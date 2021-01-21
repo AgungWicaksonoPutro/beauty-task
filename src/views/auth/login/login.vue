@@ -6,7 +6,8 @@
             <form class="mt-2">
                 <input v-model="email" class="bg-gray-200 ring-1 ring-gray-200 ot rounded-md w-full p-2 focus:outline-none focus:bg-white mb-2" type="text" name="email" id="email" placeholder="Email...">
                 <input v-model="password" class="bg-gray-200 ring-1 ring-gray-200 ot rounded-md w-full p-2 focus:outline-none focus:bg-white mb-2" type="password" name="password" id="password" placeholder="Password...">
-                <button @click.prevent="handleLogin" class="w-full bg-blue-600 rounded-md relative p-2 text-white text-xl mb-2">Sign in</button>
+                <button @click.prevent="handleLogin" class="w-full bg-blue-600 rounded-md relative p-2 text-white text-xl mb-2" :disabled="err">Sign in</button>
+                <p class="bg-red-500 p-2 rounded-lg text-white" v-if="err">Pastikan Email, Password Harus Di isi Dahulu</p>
                 <p class="text-center font-light">Not registered yet? <router-link class="text-blue-300" to="/register">Create a new account</router-link></p>
             </form>
             </div>
@@ -20,7 +21,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      err: false
     }
   },
   methods: {
@@ -30,15 +32,20 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.login(data)
-        .then((res) => {
-          this.email = ''
-          this.password = ''
-          this.$router.push('home')
-        })
-        .catch((err) => {
-          alert(err)
-        })
+      if (data.email.length > 3 && data.password.length > 3) {
+        this.login(data)
+          .then((res) => {
+            this.email = ''
+            this.password = ''
+            this.$router.push('home')
+          })
+          .catch((err) => {
+            alert(err)
+          })
+      } else {
+        this.err = true
+        setTimeout(() => { this.err = false }, 6000)
+      }
     }
   }
 }
