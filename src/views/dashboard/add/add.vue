@@ -1,5 +1,5 @@
 <template>
-    <div class="container w-full m-3 box-border">
+    <div class="w-full m-3 box-border">
         <h1 class="text-3xl tracking-wide font-semibold">Add Data</h1>
         <form class="mb-5">
             <div class="form-group mb-2">
@@ -73,6 +73,7 @@ export default {
         .then((res) => {
           this.name = ''
           this.job = ''
+          this.$swal({ icon: 'success', title: 'Added' })
         })
         .catch((err) => {
           console.log(err)
@@ -92,13 +93,25 @@ export default {
       this.dataSetupdate.id = e.id
     },
     handleDelete (e) {
-      this.deleteData(e.id)
-        .then((res) => {
-          this.setDelete(e)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteData(e.id)
+            .then((res) => {
+              this.setDelete(e)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      })
     },
     handleUpdate (e) {
       const data = {
@@ -111,6 +124,7 @@ export default {
       }
       this.updateData(container)
         .then((res) => {
+          this.$swal({ icon: 'success', title: 'Updated' })
           this.setDelete(container)
           this.toggle()
         })

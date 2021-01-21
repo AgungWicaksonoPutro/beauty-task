@@ -1,6 +1,6 @@
 <template>
  <div class="fixed z-10 inset-0 overflow-y-auto">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-40 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
                 <div class="absolute inset-0 bg-gray-500 opacity-40"></div>
             </div>
@@ -12,11 +12,11 @@
                         <h1 class=" font-bold text-2xl">Update Data</h1>
                         <div class="form-group mb-2">
                             <label class=" block" for="name">Nama</label>
-                            <input v-model="dataUpdate.name" class="bg-gray-200 p-2 w-8/12" type="text" name="name" id="name">
+                            <input v-model="dataUpdate.name" class="bg-gray-200 p-2 w-full" type="text" name="name" id="name">
                         </div>
                         <div class="form-group mb-2">
                             <label class=" block" for="name">Job</label>
-                            <input v-model="dataUpdate.job" class="bg-gray-200 p-2 w-8/12" type="text" name="job" id="job">
+                            <input v-model="dataUpdate.job" class="bg-gray-200 p-2 w-full" type="text" name="job" id="job">
                         </div>
                         <button @click.prevent="$emit('event-update', dataUpdate.id)" class="bg-gray-200 p-2">Submit</button>
                     </form>
