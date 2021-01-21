@@ -31,6 +31,7 @@ pretest project to apply for a job at Transisi
 
 ### CRUD
 <img src="https://github.com/AgungWicaksonoPutro/beauty-task/blob/main/img/CRUD.PNG" width="300">
+<img src="https://github.com/AgungWicaksonoPutro/beauty-task/blob/main/img/Update.PNG" width="300">
 
 ### LOGIN
 <img src="https://github.com/AgungWicaksonoPutro/beauty-task/blob/main/img/Login.PNG" width="300">
